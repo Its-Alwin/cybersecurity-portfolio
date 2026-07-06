@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Microsoft Sentinel — Case Study — Alwin Baby Francis</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="dark">
+  <header class="site-header small">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand-link">← Back</a>
+      <nav class="nav">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#projects" class="nav-link active">Projects</a>
+        <a href="../resume/Alwin_Baby_Francis_Resume.pdf" class="btn" download>Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container project-detail">
+    <article class="project">
+      <h1>Microsoft Sentinel — SOC Fundamentals</h1>
+      <p class="muted">Detection rules • KQL • Dashboards • Incident triage</p>
+
+      <section>
+        <h2>Project Summary</h2>
+        <p>Built analytic rules and dashboards in Microsoft Sentinel. Tuned detections to reduce false positives and created KQL-based playbooks for suspicious PowerShell and process injection detection.</p>
+      </section>
+
+      <section>
+        <h2>Technical Details</h2>
+        <ul>
+          <li>Created KQL rules to detect anomalous command lines and remote execution patterns.</li>
+          <li>Built Sentinel workbook dashboards to surface lateral movement indicators and unusual authentication patterns.</li>
+          <li>Tested detections using synthetic attack telemetry and iteratively tuned rule thresholds.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Example KQL Snippet</h2>
+        <pre class="code">
+SecurityEvent
+| where EventID == 4688
+| where NewProcessName contains "powershell.exe" and CommandLine has_any("Invoke-Expression","DownloadString")
+| extend Account = tostring(Account)
+| project TimeGenerated, Computer, Account, NewProcessName, CommandLine
+        </pre>
+        <p class="muted">(This is an example detection snippet — tailor it to your environment.)</p>
+      </section>
+
+      <section>
+        <h2>Outcome</h2>
+        <p>Reduced noise for simulated incidents by ~30% and improved mean time to detect in lab simulations. Documented playbook with triage steps and evidence collection commands.</p>
+      </section>
+
+      <div class="project-footer">
+        <a class="btn" href="../index.html#projects">Back to Projects</a>
+        <a class="btn btn-ghost" href="../resume/Alwin_Baby_Francis_Resume.pdf" download>Download Resume</a>
+      </div>
+
+    </article>
+  </main>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
